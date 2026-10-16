@@ -1,0 +1,14 @@
+# Ollama
+*.log
+
+# OpenCode
+.opencode/
+*.bak.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
