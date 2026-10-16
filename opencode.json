@@ -10,18 +10,7 @@
       },
       "models": {
         "qwen-coder-local": {
-          "name": "Qwen3 14B (local, candidato principal)",
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "limit": {
-            "context": 131072,
-            "output": 8192
-          }
-        },
-        "qwen3:14b": {
-          "name": "Qwen3 14B (raw)",
+          "name": "Qwen 2.5 Coder 14B (local, GANADOR)",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
@@ -42,8 +31,19 @@
             "output": 8192
           }
         },
+        "qwen3:14b": {
+          "name": "Qwen3 14B (alternativa, thinking + español)",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
         "gemma4:12b": {
-          "name": "Gemma 4 12B (raw)",
+          "name": "Gemma 4 12B (pendiente de prueba)",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
@@ -54,7 +54,7 @@
           }
         },
         "wcamaralopes/bonsai-27b-Q4_K_M": {
-          "name": "Bonsai 27B Q4_K_M (ternario, 5.9 GB)",
+          "name": "Bonsai 27B Q4_K_M (pendiente de prueba)",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
