@@ -1,35 +1,30 @@
-# Benchmarks y resultados
+# Resultados de benchmark — RTX 5070 Ti 16 GB VRAM
 
-> Esta sección se llenará con mediciones reales una vez que el modelo esté instalado y funcionando en esta máquina (RTX 5070 Ti, 16 GB VRAM).
+> Esta sección se llena con mediciones REALES ejecutadas en esta máquina mediante `scripts/benchmark.sh`. No son estimaciones de terceros.
 
-## Pendiente de medir
+## Estado de las pruebas
 
-- [ ] Tiempo de descarga del modelo `qwen2.5-coder:14b`
-- [ ] VRAM usada en reposo y durante generación
-- [ ] Tokens por segundo (prompt + generación)
-- [ ] Latencia de primera respuesta (time-to-first-token)
-- [ ] Prueba de tool calling con OpenCode
-- [ ] Prueba de lectura de repositorio grande (contexto largo)
+| Modelo | Estado | VRAM carga | VRAM genera | Velocidad | TTFT | Código válido | Tool calling | Veredicto |
+|---|---|---|---|---|---|---|---|---|
+| Qwen3 14B | ⏳ Descargando (99%) | — | — | — | — | — | — | Pendiente |
+| Qwen 2.5 Coder 14B | ⏳ Descargando (91%) | — | — | — | — | — | — | Pendiente |
+| Gemma 4 12B | ⏳ Descargando (53%) | — | — | — | — | — | — | Pendiente |
+| Bonsai 27B Q4_K_M | ⏳ Descargando (3%) | — | — | — | — | — | — | Pendiente |
 
-## Cómo medir
+## Cómo reproducir
 
-Ejecuta el script de verificación:
 ```bash
-./scripts/verify.sh qwen-coder-local
+./scripts/benchmark.sh
 ```
 
-O mide manualmente con Ollama:
-```bash
-time ollama run qwen-coder-local "Escribe un script de Python que lea un directorio y liste los archivos .py"
-```
+## Ganador
 
-## Plantilla de resultados
+Por determinar tras las pruebas reales. Se elegirá el modelo que:
+1. ✅ Cabe en ≤14 GB VRAM (dejando ≥2 GB para contexto)
+2. ✅ Genera ≥30 tok/s
+3. ✅ Genera código válido y ejecutable
+4. ✅ Soporta tool calling con OpenCode
 
-| Métrica | Valor | Fecha |
-|---|---|---|
-| Descarga modelo | — | — |
-| VRAM uso (idle) | — GB | — |
-| VRAM uso (generando) | — GB | — |
-| Tokens/segundo | — | — |
-| Time-to-first-token | — ms | — |
-| OpenCode tool calls | — | — |
+## Respuestas individuales
+
+Véase `docs/benchmark-results/` (una carpeta por modelo con su respuesta de código).

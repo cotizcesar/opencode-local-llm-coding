@@ -1,9 +1,16 @@
 # Modelfile para OpenCode — modelo local optimizado para programación
-# Modelo base: Qwen 2.5 Coder 14B (Apache 2.0)
+# Modelo base: Qwen3 14B (candidato principal, pendiente de benchmark real)
 # Hardware objetivo: NVIDIA RTX 5070 Ti (16 GB VRAM)
 # Contexto: 128K (deja margen para KV cache dentro de los 16 GB)
+#
+# NOTA: Cambiar la línea FROM según el ganador del benchmark.
+# Opciones probadas en esta máquina:
+#   FROM qwen3:14b
+#   FROM qwen2.5-coder:14b
+#   FROM gemma4:12b
+#   FROM wcamaralopes/bonsai-27b-Q4_K_M
 
-FROM qwen2.5-coder:14b
+FROM qwen3:14b
 
 # Parámetros de inferencia optimizados para agente de código
 PARAMETER temperature 0.1
