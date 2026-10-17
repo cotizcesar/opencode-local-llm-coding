@@ -7,9 +7,10 @@
 | Modelo | Estado | VRAM carga | VRAM genera | Velocidad | TTFT | Código válido | Tool calling | Veredicto |
 |---|---|---|---|---|---|---|---|---|
 | Qwen3 14B | ✅ Probado | 567 MB | 10,085 MB (~9.5 GB) | ~4.6 tok/s* | 62.45s* | SÍ | SÍ (thinking) | ✅ Viable |
-| Qwen 2.5 Coder 14B | ✅ Probado | — | 9,879 MB (~9.9 GB) | ~49 tok/s | 13.02s | SÍ | SÍ | ✅ **GANADOR provisional** |
-| Gemma 4 12B | ⏳ Descargando | — | — | — | — | — | — | Pendiente |
-| Bonsai 27B Q4_K_M | ⏳ Descargando | — | — | — | — | — | — | Pendiente |
+| Qwen 2.5 Coder 14B | ✅ Probado | — | 9,879 MB (~9.9 GB) | ~49 tok/s | 13.02s | SÍ | SÍ | ✅ **GANADOR** |
+| Gemma 4 12B | ⚠️ Falló (EOF repetido) | — | — | — | — | — | — | Pendiente |
+| Bonsai 27B Q4_K_M | ❌ Cancelado (16 GB, muy grande) | — | — | — | — | — | — | Cancelado |
+| Bonsai 27B 1-bit | ✅ Probado | 609 MB | 6,868 MB (~6.9 GB) | ~0 tok/s | 11.00s | NO (0 chars) | NO | ❌ Descartado |
 
 *\* TTFT incluye cold start de carga en GPU. Una vez cargado, la velocidad es mayor.*
 
@@ -45,10 +46,28 @@ Basado en las pruebas reales ejecutadas en esta máquina (RTX 5070 Ti, 16 GB VRA
 
 ## Pruebas pendientes
 
-- [ ] Gemma 4 12B (descargando)
-- [ ] Bonsai 27B Q4_K_M (descargando, 11%)
+- [ ] Gemma 4 12B (falló con EOF repetido en Ollama — se puede intentar manualmente: `ollama pull gemma4:12b`)
 - [ ] Tool calling real con OpenCode (integración completa)
 - [ ] Lectura de repositorio grande (contexto largo)
+
+## Modelo descartado
+
+**Bonsai 27B 1-bit**: Probado en esta máquina. Usa solo 3.8 GB VRAM pero **no genera código válido** (respuesta vacía). La compresión 1-bit degrada demasiado la calidad para programar. No recomendado para OpenCode.
+
+## Ganador definitivo: Qwen 2.5 Coder 14B
+
+Basado en las pruebas reales ejecutadas en esta máquina (RTX 5070 Ti, 16 GB VRAM):
+
+| Criterio | Qwen3 14B | Qwen 2.5 Coder 14B | Bonsai 27B 1-bit |
+|---|---|---|---|
+| VRAM usada | ~9.5 GB | ~9.9 GB | ~6.9 GB |
+| VRAM libre para contexto | ~6.5 GB | ~6.1 GB | ~9.1 GB |
+| Velocidad | ~4.6 tok/s* | **~49 tok/s** | ~0 tok/s |
+| Código válido | SÍ | **SÍ** | NO |
+| Tool calling | SÍ (thinking) | **SÍ** | NO |
+| Respuesta a código | 1,148 chars | **2,574 chars** | 0 chars |
+
+**Qwen 2.5 Coder 14B es el ganador definitivo** por ser ~10x más rápido, generar más del doble de código, ser especialista en código, y soportar tool calling con OpenCode. Bonsai 27B 1-bit, aunque muy liviano (3.8 GB), no genera código válido.
 
 ## Respuestas individuales
 
