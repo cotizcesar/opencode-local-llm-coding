@@ -1,9 +1,14 @@
-# Ollama
-*.log
+# .gitignore
 
-# OpenCode
-.opencode/
-*.bak.*
+# Modelos GGUF (grandes, no subir a Git)
+models/*.gguf
+models/*.bin
+
+# Benchmarks (resultados locales)
+benchmarks/*.md
+
+# Logs
+*.log
 
 # OS
 .DS_Store
@@ -12,3 +17,12 @@ Thumbs.db
 # IDE
 .idea/
 .vscode/
+
+# Build
+llama.cpp/build/
+llama.cpp/*.egg-info/
+
+# Python
+__pycache__/
+*.pyc
+llama.cpp/
